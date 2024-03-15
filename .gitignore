@@ -1,5 +1,7 @@
 HELP.md
 application.properties
+file1.txt
+git_command.txt
 target/
 out/
 !.mvn/wrapper/maven-wrapper.jar
