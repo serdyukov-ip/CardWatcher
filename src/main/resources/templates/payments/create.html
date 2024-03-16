@@ -1,11 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Payment</title>
+    <title>New card</title>
 </head>
 <body>
-<p>This page for CREATE payment</p>
-<a href="/hello">return to hello page</a>
+
+<form th:method="POST" th:action="@{/payments}" th:object="${payment}">
+
+    <label for="creditCardId">Enter creditCardId: </label>
+    <input type="text" th:field="*{creditCardId}" id="creditCardId"/>
+    <div style="color:red" th:errors="*{creditCardId}">creditCardId Error</div>
+    <br/>
+
+    <label for="dtFirstPayment">Enter dtFirstPayment: </label>
+    <input type="text" th:field="*{dtFirstPayment}" id="dtFirstPayment"/>
+    <div style="color:red" th:errors="*{dtFirstPayment}">dtFirstPayment Error</div>
+    <br/>
+
+    <label for="bankDtPayment">Enter bankDtPayment: </label>
+    <input type="text" th:field="*{bankDtPayment}" id="bankDtPayment"/>
+    <div style="color:red" th:errors="*{bankDtPayment}">bankDtPayment Error</div>
+    <br/>
+
+    <label for="recommendPaymentDt">Enter recommendPaymentDt: </label>
+    <input type="text" th:field="*{recommendPaymentDt}" id="recommendPaymentDt"/>
+    <div style="color:red" th:errors="*{recommendPaymentDt}">recommendPaymentDt Error</div>
+    <br/>
+
+    <label for="calcDtFullRepayment">Enter calcDtFullRepayment: </label>
+    <input type="text" th:field="*{calcDtFullRepayment}" id="calcDtFullRepayment"/>
+    <div style="color:red" th:errors="*{calcDtFullRepayment}">calcDtFullRepayment Error</div>
+    <br/>
+
+    <label for="amount">Enter amount: </label>
+    <input type="text" th:field="*{amount}" id="amount"/>
+    <div style="color:red" th:errors="*{amount}">amount Error</div>
+    <br/>
+
+    <label for="paymentDt">Enter paymentDt: </label>
+    <input type="text" th:field="*{paymentDt}" id="paymentDt"/>
+    <div style="color:red" th:errors="*{paymentDt}">paymentDt Error</div>
+    <br/>
+
+    <label for="paymentStatusId">Enter paymentStatusId: </label>
+    <input type="text" th:field="*{paymentStatusId}" id="paymentStatusId"/>
+    <div style="color:red" th:errors="*{paymentStatusId}">paymentStatusId Error</div>
+    <br/>
+
+    <label for="description">Enter description: </label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <div style="color:red" th:errors="*{description}">description Error</div>
+    <br/>
+
+
+    <input type="submit" value="Create!"/>
+</form>
+
 </body>
 </html>

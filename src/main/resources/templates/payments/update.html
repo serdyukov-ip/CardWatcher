@@ -1,11 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update Payment</title>
+    <title>Update user</title>
 </head>
 <body>
-<p>This page for Update Payment</p>
-<a href="/hello">return to hello page</a>
+
+<form th:method="POST" th:action="@{/payments/{id}(id=${payment.getId()})}" th:object="${payment}">
+
+    <label for="Id">Enter Id:</label>
+    <input type="text" th:field="*{id}" id="Id"/>
+    <div style="color:red" th:errors="*{id}">Name Error</div>
+    <br/>
+
+    <label for="IdUser">Enter IdUser: </label>
+    <input type="text" th:field="*{IdUserserName}" id="IdUser"/>
+    <div style="color:red" th:errors="*{IdUser}">Name Error</div>
+    <br/>
+
+    <label for="IdBank">Enter IdBank: </label>
+    <input type="text" th:field="*{IdBankserName}" id="IdBank"/>
+    <div style="color:red" th:errors="*{IdBank}">Name Error</div>
+    <br/>
+
+    <label for="IdCurrency">Enter IdCurrency: </label>
+    <input type="text" th:field="*{IdCurrency}" id="IdCurrency"/>
+    <div style="color:red" th:errors="*{IdCurrency}">Name Error</div>
+    <br/>
+
+    <label for="CardName">Enter CardName: </label>
+    <input type="text" th:field="*{CardNamer}" id="CardName"/>
+    <div style="color:red" th:errors="*{CardName}">Name Error</div>
+    <br/>
+
+    <label for="LastFourDigit">Enter LastFourDigit: </label>
+    <input type="text" th:field="*{LastFourDigit}" id="LastFourDigit"/>
+    <div style="color:red" th:errors="*{LastFourDigit}">Name Error</div>
+    <br/>
+
+    <label for="LimitAmount">Enter LimitAmount: </label>
+    <input type="text" th:field="*{LimitAmount}" id="LimitAmount"/>
+    <div style="color:red" th:errors="*{LimitAmount}">Name Error</div>
+    <br/>
+
+    <label for="TotalDebit">Enter TotalDebit: </label>
+    <input type="text" th:field="*{TotalDebit}" id="TotalDebit"/>
+    <div style="color:red" th:errors="*{TotalDebit}">Name Error</div>
+    <br/>
+
+    <label for="GracePeriod">Enter GracePeriod: </label>
+    <input type="text" th:field="*{GracePeriod}" id="GracePeriod"/>
+    <div style="color:red" th:errors="*{GracePeriod}">Name Error</div>
+    <br/>
+
+    <label for="InterestRate">Enter InterestRate: </label>
+    <input type="text" th:field="*{InterestRate}" id="InterestRate"/>
+    <div style="color:red" th:errors="*{InterestRate}">Name Error</div>
+    <br/>
+
+    <label for="StatementDay">Enter StatementDay: </label>
+    <input type="text" th:field="*{StatementDay}" id="StatementDay"/>
+    <div style="color:red" th:errors="*{StatementDay}">Name Error</div>
+    <br/>
+
+    <input type="submit" value="Update!"/>
+
+</form>
+
 </body>
 </html>
