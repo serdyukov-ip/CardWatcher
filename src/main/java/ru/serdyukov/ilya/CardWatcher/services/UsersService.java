@@ -34,10 +34,12 @@ public class UsersService {
         usersRepository.save(user);
     }
 
+    @Transactional
     public void update(int id, User user) {
+        User olduser = findOne(id);
         user.setId(id);
-        System.err.println("Запрос поступил в UserService");
-        System.err.println("User id: " + user.getId() + " User name: " + user.getUserName() + " User login: " + user.getLogin());
+        user.setPassword(olduser.getPassword());
+
         usersRepository.save(user);
     }
 

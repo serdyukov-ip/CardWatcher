@@ -34,6 +34,7 @@ public class PaymentsService {
         paymentRepository.save(payment);
     }
 
+    @Transactional
     public void update(int id, Payment payment) {
         payment.setId(id);
         paymentRepository.save(payment);

@@ -48,9 +48,20 @@ public class CardsController {
     }
 
     @GetMapping("/{id}/update")
-    public String updateCard(Model model, @PathVariable("id") int id) {
+    public String updateUser(Model model, @PathVariable("id") int id) {
         model.addAttribute("card", cardsService.findOne(id));
-        //Card user = (Card)model.getAttribute("user");
+        return "cards/update";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("card") Card card, BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+
+        if (bindingResult.hasErrors()) {
+            return "cards/update";
+        }
+
+        cardsService.update(id, card);
         return "redirect:/cards/list";
     }
 

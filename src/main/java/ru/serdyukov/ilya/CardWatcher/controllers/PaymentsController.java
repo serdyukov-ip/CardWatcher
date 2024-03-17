@@ -48,13 +48,13 @@ public class PaymentsController {
     }
 
     @GetMapping("/{id}/update")
-    public String updateCard(Model model, @PathVariable("id") int id) {
+    public String updatePayment(Model model, @PathVariable("id") int id) {
         model.addAttribute("payment", paymentsService.findOne(id));
         return "payments/update";
     }
 
     @PatchMapping("/{id}")
-    public String updateCard(@ModelAttribute("payment") Payment payment, BindingResult bindingResult,
+    public String updatePayment(@ModelAttribute("payment") Payment payment, BindingResult bindingResult,
                              @PathVariable("id") int id) {
 
         if (bindingResult.hasErrors()) {
@@ -66,7 +66,7 @@ public class PaymentsController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCard(@PathVariable("id") int id) {
+    public String deletePayment(@PathVariable("id") int id) {
         paymentsService.delete(id);
         return "redirect:/payments/list";
     }

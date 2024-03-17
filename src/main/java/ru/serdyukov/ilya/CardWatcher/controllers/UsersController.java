@@ -48,17 +48,14 @@ public class UsersController {
     }
 
     @GetMapping("/{id}/update")
-    public String updateCard(Model model, @PathVariable("id") int id) {
+    public String updateUser(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", usersService.findOne(id));
         return "users/update";
     }
 
     @PatchMapping("/{id}")
-    public String updateCard(@ModelAttribute("user") User user, BindingResult bindingResult,
+    public String update(@ModelAttribute("user") User user, BindingResult bindingResult,
                              @PathVariable("id") int id) {
-
-        System.err.println("Запрос поступил в Controller");
-        System.err.println("user id: " + user.getId() + " user name: " + user.getUserName() + " user login: " + user.getLogin());
 
         if (bindingResult.hasErrors()) {
             return "users/update";
