@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+
+<p th:text="${card.getId()}">VALUE</p>
+<p th:text="${card.getIdUser()}">VALUE</p>
+<p th:text="${card.getIdBank()}">VALUE</p>
+<p th:text="${card.getIdCurrency()}">VALUE</p>
+<p th:text="${card.getCardName()}">VALUE</p>
+<p th:text="${card.getLastFourDigit()}">VALUE</p>
+<p th:text="${card.getLimitAmount()}">VALUE</p>
+<p th:text="${card.getTotalDebit()}">VALUE</p>
+<p th:text="${card.getGracePeriod()}">VALUE</p>
+<p th:text="${card.getInterestRate()}">VALUE</p>
+<p th:text="${card.getStatementDay()}">VALUE</p>
+
+<a th:href="@{/cards/{id}/update(id=${card.getId()})}">Update</a>
+
+<form th:method="DELETE" th:action="@{/cards/{id}(id=${card.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

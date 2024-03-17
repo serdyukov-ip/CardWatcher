@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show List Payments</title>
+    <title>Show Payments</title>
 </head>
 <body>
-<p>This page for SHOW LIST Payments</p>
-<a href="/hello">return to hello page</a>
+
+<div th:each="payment : ${payments}">
+    <a th:href="@{/payments/{id}(id=${payment.getId()})}"
+       th:text="${payment.getId() + ', ' +
+                  payment.getCreditCardId() + ', ' +
+                  payment.getDtFirstPayment()  + ', ' +
+                  payment.getBankDtPayment()  + ', ' +
+                  payment.getRecommendPaymentDt()  + ', ' +
+                  payment.getCalcDtFullRepayment()  + ', ' +
+                  payment.getAmount() + ', ' +
+                  payment.getPaymentDt()  + ', ' +
+                  payment.getPaymentStatusId()  + ', ' +
+                  payment.getDescription()}">payment</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/payments/create">Create new payment</a>
+
 </body>
 </html>
