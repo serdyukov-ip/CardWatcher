@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show List Cards</title>
+    <title>Show Cards</title>
 </head>
 <body>
-<p>This page for SHOW LIST cards</p>
-<a href="/hello">return to hello page</a>
+
+<div th:each="card : ${cards}">
+    <a th:href="@{/cards/{id}(id=${card.getId()})}"
+       th:text="${card.getId() + ', ' +
+                  card.getIdUser()  + ', ' +
+                  card.getIdBank()  + ', ' +
+                  card.getIdCurrency()  + ', ' +
+                  card.getCardName()  + ', ' +
+                  card.getLastFourDigit()  + ', ' +
+                  card.getLimitAmount()  + ', ' +
+                  card.getTotalDebit()  + ', ' +
+                  card.getGracePeriod()  + ', ' +
+                  card.getInterestRate()  + ', ' +
+                  card.getStatementDay()}">card</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/cards/create">Create new card</a>
+
 </body>
 </html>
