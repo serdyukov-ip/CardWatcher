@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Cards</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row sticky-top">
+        <div class="col-lg-4">
+            <a href="/cards/create">
+                <button class="btn btn-primary mt-3 cards-btn mx-auto d-block">Create New Card</button>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <h2 class="text-center mb-3 mt-3">My Cards</h2>
+        </div>
+        <div class="col-lg-4">
+            <a href="/cards/">
+                <button class="btn btn-primary mt-3 cards-btn mx-auto d-block">Account settings</button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4" th:each="card : ${cards}">
+            <a th:href="@{/cards/{id}(id=${card.getId()})}">
+                <div class="card mb-3 mt-3 cards">
+                    <div class="card-body d-flex flex-column">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <p class="card-text" th:text="${'****' + card.getLastFourDigit()}">LastFourDigit</p>
+                            </div>
+                            <div class="col-md-12">
+                                <h5 class="card-title" th:text="${card.getCardName()}">CardName</h5>
+                            </div>
+                        </div>
+                        <div class="mt-auto">
+                            <p class="card-text" th:text="${'Upcoming payment: ' + card.getLastFourDigit()}">
+                                TotalDebit}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
