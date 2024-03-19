@@ -25,8 +25,13 @@ public class UsersService {
     }
 
     public User findOne(int id) {
-        Optional<User> findCard = usersRepository.findById(id);
-        return findCard.orElse(null);
+        Optional<User> findUser = usersRepository.findById(id);
+        return findUser.orElse(null);
+    }
+
+    public User findByLogin(String login) {
+        Optional<User> findUser = usersRepository.findByLogin(login);
+        return findUser.orElse(null);
     }
 
     @Transactional

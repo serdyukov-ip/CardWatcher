@@ -1,6 +1,9 @@
 package ru.serdyukov.ilya.CardWatcher.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,35 +11,36 @@ import org.springframework.web.bind.annotation.*;
 import ru.serdyukov.ilya.CardWatcher.models.Bank;
 import ru.serdyukov.ilya.CardWatcher.models.Card;
 import ru.serdyukov.ilya.CardWatcher.models.Currency;
-import ru.serdyukov.ilya.CardWatcher.models.User;
+import ru.serdyukov.ilya.CardWatcher.security.UserDetailsSecurity;
 import ru.serdyukov.ilya.CardWatcher.services.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/cards")
 public class CardsController {
 
-    private final BanksService banksService;
+
     private final CardsService cardsService;
-    private final CurrenciesService currenciesService;
-    private final PaymentsService paymentsService;
-    private final PaymentsStatusService paymentsStatusService;
     private final UsersService userService;
 
     @Autowired
-    public CardsController(CardsService cardsService, UsersService userService, BanksService banksService,
-                           CurrenciesService currenciesService, PaymentsService paymentsService,
-                           PaymentsStatusService paymentsStatusService) {
+    public CardsController(CardsService cardsService,UsersService userService) {
         this.cardsService = cardsService;
         this.userService = userService;
-        this.banksService = banksService;
-        this.currenciesService = currenciesService;
-        this.paymentsService = paymentsService;
-        this.paymentsStatusService = paymentsStatusService;
     }
 
     @GetMapping("/")
     public String showListOfCards(Model model) {
-        model.addAttribute("cards", cardsService.findAll());
+
+        ru.serdyukov.ilya.CardWatcher.models.User user = this.getUser();
+
+        List<Card> cardsList = cardsService.findByIdUser(user.getId());
+        if (cardsList.isEmpty())
+            model.addAttribute("no_card", true);
+
+        model.addAttribute("cards", cardsList);
+        model.addAttribute("user", user);
         return "cards/list-cards";
     }
 
@@ -47,18 +51,26 @@ public class CardsController {
     }
 
     @GetMapping("/create")
-    public String createCard(@ModelAttribute("card") Card card) {
-        return "cards/create";
+    public String createCard(@ModelAttribute("card") Card card,
+                             @ModelAttribute("user") ru.serdyukov.ilya.CardWatcher.models.User user) {
+        return "cards/create-card";
     }
 
-    @PostMapping()
-    public String newCard(@ModelAttribute("user") Card card, BindingResult bindingResult) {
+    @PostMapping("/create")
+    public String newCard(@ModelAttribute("card") Card card,
+                          BindingResult bindingResult) {
 
         if (bindingResult.hasErrors())
-            return "cards/create";
+            return "cards/create-card";
+
+        // here is the hardcode - still in work :D
+        ru.serdyukov.ilya.CardWatcher.models.User user = this.getUser();
+        card.setIdUser(user.getId());
+        card.setIdBank(1);
+        card.setIdCurrency(1);
 
         cardsService.save(card);
-        return "redirect:/cards/list";
+        return "redirect:/cards/";
     }
 
     @PatchMapping("/{id}")
@@ -77,6 +89,13 @@ public class CardsController {
     public String deleteCard(@PathVariable("id") int id) {
         cardsService.delete(id);
         return "redirect:/cards";
+    }
+
+
+    private ru.serdyukov.ilya.CardWatcher.models.User getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User principal = (User)authentication.getPrincipal();
+        return userService.findByLogin(principal.getUsername());
     }
 
 }
