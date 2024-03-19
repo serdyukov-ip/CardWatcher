@@ -3,7 +3,10 @@ package ru.serdyukov.ilya.CardWatcher.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.serdyukov.ilya.CardWatcher.models.Bank;
 import ru.serdyukov.ilya.CardWatcher.models.Card;
+import ru.serdyukov.ilya.CardWatcher.models.Currency;
+import ru.serdyukov.ilya.CardWatcher.models.User;
 import ru.serdyukov.ilya.CardWatcher.repositories.CardsRepository;
 
 import java.util.List;
@@ -35,8 +38,29 @@ public class CardsService {
     }
 
     @Transactional
-    public void update(int id, Card card) {
+    public void update(int id, Card card /*, User user, Bank bank, Currency currency*/) {
+        System.err.println("Вызван CardsService");
+
         card.setId(id);
+        //card.setIdUser(user.getId());
+        //card.setIdBank(bank.getId());
+//        card.setIdCurrency(currency.getId());
+
+
+//        System.err.println(
+//            "getId:" + card.getId() + ", \n" +
+//            "getIdUser:" + card.getIdUser() + ", \n" +
+//            "getIdBank:" + card.getIdBank() + ", \n" +
+//            "getCardName:" + card.getCardName() + ", \n" +
+//            "getLastFourDigit:" + card.getLastFourDigit() + ", \n" +
+//            "getIdCurrency:" + card.getIdCurrency() + ", \n" +
+//            "getLimitAmount:" + card.getLimitAmount() + ", \n" +
+//            "getGracePeriod:" + card.getGracePeriod() + ", \n" +
+//            "getInterestRate:" + card.getInterestRate() + ", \n" +
+//            "getStatementDay:" + card.getStatementDay() + ", \n" +
+//            "getTotalDebit:" + card.getTotalDebit() + "\n"
+//        );
+
         cardsRepository.save(card);
     }
 

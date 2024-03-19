@@ -9,12 +9,29 @@
 	<link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container cards-wrapper">
-		<div class="row">
-			<h2 class="text-center">Card Details</h2>
+<a href="/cards/">
+	<div class="logo-page">
+		<img src="../img/logo.png" alt="">
+	</div>
+</a>
+<div class="container">
+	<div class="row sticky-top">
+		<div class="col-lg-4">
+			<button type="button" class="btn btn-primary mt-3 cards-btn mx-auto d-block" data-toggle="modal"
+					data-target="#modalUpdate">Update Card</button>
 		</div>
-		<div class="row">
-			<form id="updateForm" th:method="PATCH" th:action="@{/cards/{id}(id=${card.getId()})}" th:object="${card}">
+		<div class="col-lg-4">
+			<h2 class="text-center mb-3 mt-3">Card Details</h2>
+		</div>
+		<div class="col-lg-4 text-right">
+			<button type="button" class="btn btn-danger mt-3 cards-btn-delete mx-auto d-block" data-toggle="modal"
+					data-target="#modalDelete">Delete Card
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 px-5">
+			<form id="updateForm" class="cards-wrapper" th:method="PATCH" th:action="@{/cards/{id}(id=${card.getId()})}" th:object="${card}">
 				<div class="form-group mb-3 mt-1">
 					<label for="bankName">Bank Name</label>
 					<div class="form-field">
@@ -85,17 +102,10 @@
 					</div>
 				</div>
 			</form>
-			<form id="deleteForm"></form>
+			<form id="deleteForm" th:method="DELETE" th:action="@{/cards/{id}(id=${card.getId()})}"></form>
 		</div>
-		<div class="row">
-			<div class="col-sm-6 mt-2 text-left">
-				<button type="button" class="btn btn-primary cards-btn" data-toggle="modal" data-target="#modalUpdate">Update Card</button>
-			</div>
-			<div class="col-sm-6 mt-2 text-right">
-				<button type="button" class="btn btn-danger cards-btn-delete" data-toggle="modal" data-target="#modalDelete">Delete Card</button>
-			</div>
-		</div>
-    </div>
+	</div>
+</div>
 	
 
 	<!-- Модальное окно Update -->
