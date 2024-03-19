@@ -38,7 +38,11 @@ public class SecurityConfig {
                         .failureUrl("/auth/login?error")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout
+                        .logoutUrl("/logout") // URL для разлогинивания
+                        .logoutSuccessUrl("/auth/login") // URL для перенаправления после выхода
+                        .permitAll()
+                );
 
         return http.build();
     }
