@@ -88,7 +88,7 @@ public class CardsController {
     @DeleteMapping("/{id}")
     public String deleteCard(@PathVariable("id") int id) {
         cardsService.delete(id);
-        return "redirect:/cards";
+        return "redirect:/cards/";
     }
 
 
