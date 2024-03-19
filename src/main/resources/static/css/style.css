@@ -51,6 +51,17 @@ a:hover, a:focus, a:active, a.text {
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 }
 
+.custom-input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+}
+
 .cards-wrapper .form-field input {
     width: 100%;
     display: block;
@@ -178,7 +189,7 @@ a:hover, a:focus, a:active, a.text {
     color: #fff;
     border-radius: 25px;
     box-shadow: 3px 3px 3px #b1b1b1,
-        -3px -3px 3px #fff;
+    -3px -3px 3px #fff;
     letter-spacing: 1.3px;
 }
 

@@ -13,11 +13,9 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Transient
     @Column(name = "id_user")
     private int idUser;
 
-    @Transient
     @Column(name = "id_bank")
     private int idBank;
 
@@ -27,7 +25,6 @@ public class Card {
     @Column(name = "last_four_digit")
     private String lastFourDigit;
 
-    @Transient
     @Column(name = "id_currency")
     private int idCurrency;
 
@@ -45,7 +42,6 @@ public class Card {
 
     @Column(name = "total_debit")
     private double totalDebit;
-
 
     public Card() {
     }

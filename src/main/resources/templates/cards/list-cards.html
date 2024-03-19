@@ -25,12 +25,15 @@
             <h2 class="text-center mb-3 mt-3">My Cards</h2>
         </div>
         <div class="col-lg-4">
-            <a href="/cards/">
+            <a href="/auth/forget-password">
                 <button class="btn btn-primary mt-3 cards-btn mx-auto d-block">Account settings</button>
             </a>
         </div>
     </div>
     <div class="row">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;" th:if="${no_card}">
+            <p>You haven't created a credit card yet</p>
+        </div>
         <div class="col-lg-4" th:each="card : ${cards}">
             <a th:href="@{/cards/{id}(id=${card.getId()})}">
                 <div class="card mb-3 mt-3 cards">
