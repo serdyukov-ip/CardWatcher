@@ -5,31 +5,45 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.serdyukov.ilya.CardWatcher.models.Bank;
 import ru.serdyukov.ilya.CardWatcher.models.Card;
+import ru.serdyukov.ilya.CardWatcher.models.Currency;
 import ru.serdyukov.ilya.CardWatcher.models.User;
-import ru.serdyukov.ilya.CardWatcher.services.CardsService;
+import ru.serdyukov.ilya.CardWatcher.services.*;
 
 @Controller
 @RequestMapping("/cards")
 public class CardsController {
 
+    private final BanksService banksService;
     private final CardsService cardsService;
+    private final CurrenciesService currenciesService;
+    private final PaymentsService paymentsService;
+    private final PaymentsStatusService paymentsStatusService;
+    private final UsersService userService;
 
     @Autowired
-    public CardsController(CardsService cardsService) {
+    public CardsController(CardsService cardsService, UsersService userService, BanksService banksService,
+                           CurrenciesService currenciesService, PaymentsService paymentsService,
+                           PaymentsStatusService paymentsStatusService) {
         this.cardsService = cardsService;
+        this.userService = userService;
+        this.banksService = banksService;
+        this.currenciesService = currenciesService;
+        this.paymentsService = paymentsService;
+        this.paymentsStatusService = paymentsStatusService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String showListOfCards(Model model) {
         model.addAttribute("cards", cardsService.findAll());
-        return "cards/list";
+        return "cards/list-cards";
     }
 
     @GetMapping("/{id}")
     public String showCard(@PathVariable("id") int id, Model model) {
         model.addAttribute("card", cardsService.findOne(id));
-        return "cards/show";
+        return "cards/update-cards";
     }
 
     @GetMapping("/create")
@@ -47,28 +61,22 @@ public class CardsController {
         return "redirect:/cards/list";
     }
 
-    @GetMapping("/{id}/update")
-    public String updateUser(Model model, @PathVariable("id") int id) {
-        model.addAttribute("card", cardsService.findOne(id));
-        return "cards/update";
-    }
-
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("card") Card card, BindingResult bindingResult,
                          @PathVariable("id") int id) {
 
         if (bindingResult.hasErrors()) {
-            return "cards/update";
+            return "cards/update-cards";
         }
 
         cardsService.update(id, card);
-        return "redirect:/cards/list";
+        return "redirect:/cards/" + id;
     }
 
     @DeleteMapping("/{id}")
     public String deleteCard(@PathVariable("id") int id) {
         cardsService.delete(id);
-        return "redirect:/cards/list";
+        return "redirect:/cards";
     }
 
 }
