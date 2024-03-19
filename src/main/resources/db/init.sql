@@ -63,7 +63,10 @@ insert into PaymentStatus (status_name) VALUES ('SUCCESS'), ('PENDING'), ('OVERD
 
 insert into currencies (currency_name) VALUES ('EUR'), ('RUB'), ('USD');
 
-insert into users(user_name, login, password) values ('testuser', 'test', 'password');
+insert into users(user_name, login, password) values
+                                                  ('test1', 'user1', 'pass1234'),
+                                                  ('test2', 'user2', 'pass1234'),
+                                                  ('test3', 'user3', 'pass1234');
 
 insert into CreditCards (
     id_user, -- user id
@@ -87,10 +90,13 @@ values
     (1, 7, 'Rosbank', '0007', 2, 150000, 120, 34.53, 4, 0),
     (1, 8, 'SBER', '0008', 2, 50000, 120, 58.06, 5, 0),
     (1, 9, 'Tinkoff', '0009', 2, 200000, 55, 35.79, 10, 0),
-    (1, 10, 'VTB', '0010', 2, 120000, 50, 53.29, 12, 0)
+    (1, 10, 'VTB', '0010', 2, 120000, 50, 53.29, 12, 0),
+    (2, 1, 'Alfa', '0001', 2, 150000, 50, 57.43, 1, 0),
+    (2, 2, 'Gazprom', '0002', 2, 300000, 180, 24.45, 10, 0),
+    (2, 3, 'Home Bank', '0003', 2, 170000, 120, 40.46, 26, 0)
 ;
 
-insert into creditcardpayments (
+/*insert into creditcardpayments (
     credit_card_id, -- unique id of the credit card
     dt_first_payment, -- date of the first payment within the grace period
     bank_dt_payment, -- payment date specified by the bank
@@ -111,4 +117,4 @@ values
     (8, '03/05/2024', '04/18/2024', '04/17/2024', '07/03/2024', 7237.34, 2, 'velit esse cillum dolore eu fugiat nulla pariatur'),
     (9, '10.03.2024', '28.04.2024', '27.04.2024', '04.05.2024', 7528.72, 2, 'Excepteur sint occaecat cupidat non proident'),
     (10, '12.03.2024', '14.04.2024', '13.04.2024', '01.05.2024', 9934.07, 2, 'qui officia deserunt mollit anim id est laborum')
-;
+;*/

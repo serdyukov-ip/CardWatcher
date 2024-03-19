@@ -1,0 +1,10 @@
+# Используем официальный образ PostgreSQL
+FROM postgres:latest
+
+# Копируем init.sql в контейнер
+COPY ./src/main/resources/db/init.sql /docker-entrypoint-initdb.d/
+
+# Устанавливаем переменные среды для PostgreSQL
+ENV POSTGRES_DB=card_watcher
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
