@@ -44,11 +44,17 @@ CardWatcher - это веб-приложение, которое позволя�
 Для тестирования проекта необходимы Docker, Docker-Compose и Maven. Чтобы начать тестирование, выполните следующие шаги:
 
 1. Склонируйте репозиторий:
-  - git clone https://github.com/serdyukov-ip/CardWatcher.git
+```bash
+git clone https://github.com/serdyukov-ip/CardWatcher.git
+```
 2. Соберите проект:
-  - mvn clean package
+```bash
+ mvn clean package
+```
 3. В корне проекта запустите сборку docker-compose:
-  - docker-compose up --build
+```dockerfile
+docker-compose up --build
+```
 4. Дождитесь запуска контейнеров.
 5. Откройте браузер и перейдите по адресу `http://localhost:8080/auth/login`
 
