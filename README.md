@@ -33,9 +33,8 @@ CardWatcher - это веб-приложение, которое позволя�
 - Spring Security
 - PostgreSQL
 - Thymeleaf
-- Bootstrap 5.0
 - Lombok
-- Mockito
+- Bootstrap 5.0
 - JavaScript
 - HTML
 - CSS
