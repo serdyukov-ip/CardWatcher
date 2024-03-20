@@ -29,8 +29,9 @@ CardWatcher - это веб-приложение, которое позволя�
 - Spring Boot
 - Spring Data JPA
 - Spring Security
-- Thymeleaf
 - PostgreSQL
+- Thymeleaf
+- Bootstrap 5.0
 - Lombok
 - Mockito
 - JavaScript
