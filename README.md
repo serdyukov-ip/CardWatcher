@@ -35,7 +35,7 @@ CardWatcher - это веб-приложение, которое позволя�
 - PostgreSQL
 - Thymeleaf
 - Lombok
-- Bootstrap 5.0
+- Bootstrap
 - JavaScript
 - HTML
 - CSS
