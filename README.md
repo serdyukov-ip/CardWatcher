@@ -1,4 +1,4 @@
-# CardWatcher
+# Cards Watcher
 
 ## Содержание
 - [О проекте](#о-проекте)
