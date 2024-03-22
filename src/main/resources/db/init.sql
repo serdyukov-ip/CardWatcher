@@ -64,9 +64,9 @@ insert into PaymentStatus (status_name) VALUES ('SUCCESS'), ('PENDING'), ('OVERD
 insert into currencies (currency_name) VALUES ('EUR'), ('RUB'), ('USD');
 
 insert into users(user_name, login, password) values
-                                                  ('test1', 'user1', 'pass1234'),
-                                                  ('test2', 'user2', 'pass1234'),
-                                                  ('test3', 'user3', 'pass1234');
+                                                  ('test1', 'user1', '$2a$10$yq37LmP9D16vntoxhOW39.p.R7Uw7sDs3nfTaF2fP0coDlThBdwMS'),
+                                                  ('test2', 'user2', '$2a$10$sFy2cFz2IP6bgIYy8tWsO.vvbGTCRG2SiC5e5vwFY/3K7UobGYFrC'),
+                                                  ('test3', 'user3', '$2a$10$kDGCdSSap5gMHHHLnn3Pw.K6p7TGg0JID1CI1XJjA0n/vTYMRifgS');
 
 insert into CreditCards (
     id_user, -- user id
