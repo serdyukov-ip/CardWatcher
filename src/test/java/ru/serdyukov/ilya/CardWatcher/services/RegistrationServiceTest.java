@@ -1,6 +1,6 @@
 package ru.serdyukov.ilya.CardWatcher.services;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,6 +35,8 @@ class RegistrationServiceTest {
 
         verify(passwordEncoder, times(1)).encode(user.getPassword());
         verify(usersRepository, times(1)).save(user);
+
+        Assertions.assertThat(user.getPassword()).isEqualTo("testPassword1234");
 
     }
 
