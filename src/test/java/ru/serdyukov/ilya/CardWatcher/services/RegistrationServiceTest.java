@@ -1,6 +1,7 @@
 package ru.serdyukov.ilya.CardWatcher.services;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +25,8 @@ class RegistrationServiceTest {
     private RegistrationService registrationService;
 
     @Test
-    void  ifCompareEncodedPasswordsTheyShouldBeEqual() {
+    @DisplayName("if compare the encoded passwords, they should be equal")
+    void ifCompareEncodedPasswordsTheyShouldBeEqual() {
 
         User user = new User();
         user.setPassword("testPassword1234");

@@ -1,6 +1,7 @@
 package ru.serdyukov.ilya.CardWatcher.services;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,9 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import ru.serdyukov.ilya.CardWatcher.models.User;
 import ru.serdyukov.ilya.CardWatcher.repositories.UsersRepository;
-
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
@@ -32,8 +31,8 @@ public class UserDetailsServiceTest {
     }
 
     @Test
+    @DisplayName("loading a user by username should return the user's details if the user exists")
     void loadUserByUsername_userExists_returnsUserDetails() {
-        // Arrange
         String login = "testUser";
         String password = "testPassword";
         User user = new User();
@@ -41,10 +40,8 @@ public class UserDetailsServiceTest {
         user.setPassword(password);
         when(usersRepository.findByLogin(login)).thenReturn(Optional.of(user));
 
-        // Act
         UserDetails userDetails = userDetailsService.loadUserByUsername(login);
 
-        // Assert
         assertThat(userDetails.getUsername()).isEqualTo(login);
         assertThat(userDetails.getPassword()).isEqualTo(password);
         assertThat(userDetails.getAuthorities()).hasSize(1);
@@ -52,12 +49,11 @@ public class UserDetailsServiceTest {
     }
 
     @Test
+    @DisplayName("loading a user by username should throw a `username not found` exception if the user does not exist")
     void loadUserByUsername_userDoesNotExist_throwsUsernameNotFoundException() {
-        // Arrange
         String login = "nonExistentUser";
         when(usersRepository.findByLogin(login)).thenReturn(Optional.empty());
 
-        // Act & Assert
         assertThatThrownBy(() -> userDetailsService.loadUserByUsername(login))
                 .isInstanceOf(UsernameNotFoundException.class)
                 .hasMessage("User not found!");
