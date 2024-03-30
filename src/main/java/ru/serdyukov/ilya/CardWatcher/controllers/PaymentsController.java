@@ -20,10 +20,10 @@ public class PaymentsController {
         this.paymentsService = paymentsService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String showListOfPayments(Model model) {
         model.addAttribute("payments", paymentsService.findAll());
-        return "payments/list";
+        return "payments/list-payments";
     }
 
     @GetMapping("/{id}")
@@ -36,6 +36,7 @@ public class PaymentsController {
     public String createPayment(@ModelAttribute("payment") Payment payment) {
         return "payments/create";
     }
+
 
     @PostMapping()
     public String newPayment(@ModelAttribute("payment") Payment payment, BindingResult bindingResult) {

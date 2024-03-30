@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Payments</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<a href="/cards/">
+    <div class="logo-page">
+        <img src="/img/logo.png" alt="">
+    </div>
+</a>
+<a href="/logout">
+    <div class="logout">
+        <img src="/img/logout.png" alt="">
+    </div>
+</a>
+<div class="container">
+    <div class="row sticky-top">
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-primary mt-3 cards-btn mx-auto d-block" data-toggle="modal"
+                    data-target="#modalUpdate">Update Payment</button>
+        </div>
+        <div class="col-lg-4">
+            <h2 class="text-center mb-3 mt-3">Payment Details</h2>
+        </div>
+        <div class="col-lg-4 text-right">
+            <button type="button" class="btn btn-danger mt-3 cards-btn-delete mx-auto d-block" data-toggle="modal"
+                    data-target="#modalDelete">Delete Payment
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 px-5">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First payment dt</th>
+                    <th scope="col">Payment dt from bank</th>
+                    <th scope="col">Recommend payment dt</th>
+                    <th scope="col">Payment dt calc</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Payment dt</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-success" th:each="payment, iterStat : ${payments}">
+                        <th scope="row" th:text="${iterStat.index + 1}" ></th>
+                        <td hidden="true" th:value="${payment.getId()}"></td>
+                        <td><input th:value="${payment.getDtFirstPayment()}"></td>
+                        <td><input th:value="${payment.getBankDtPayment()}"></td>
+                        <td><input th:value="${payment.getRecommendPaymentDt()}"></td>
+                        <td><input th:value="${payment.getCalcDtFullRepayment()}"></td>
+                        <td><input th:value="${payment.getAmount()}"></td>
+                        <td><input th:value="${payment.getPaymentDt()}"></td>
+                        <td><input th:value="${payment.getPaymentStatusId()}"></td>
+                        <td><input th:value="${payment.getDescription()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Модальное окно Update -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle1">Confirmation</h5>
+                <button type="button" class="btn-close border-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&#10005;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Update payment?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary cards-btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger cards-btn-delete" id="confirmUpdate" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно Delete -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle2">Confirmation</h5>
+                <button type="button" class="btn-close border-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&#10005;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Delete payment?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary cards-btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger cards-btn-delete" id="confirmDelete" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
