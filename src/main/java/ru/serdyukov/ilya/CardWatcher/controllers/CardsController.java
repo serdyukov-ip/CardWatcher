@@ -8,11 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.serdyukov.ilya.CardWatcher.models.Bank;
+import ru.serdyukov.ilya.CardWatcher.services.CardsService;
+import ru.serdyukov.ilya.CardWatcher.services.UsersService;
 import ru.serdyukov.ilya.CardWatcher.models.Card;
-import ru.serdyukov.ilya.CardWatcher.models.Currency;
-import ru.serdyukov.ilya.CardWatcher.security.UserDetailsSecurity;
-import ru.serdyukov.ilya.CardWatcher.services.*;
 
 import java.util.List;
 

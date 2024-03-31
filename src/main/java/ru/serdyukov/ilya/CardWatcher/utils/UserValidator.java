@@ -1,9 +1,6 @@
 package ru.serdyukov.ilya.CardWatcher.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.DuplicatesPredicate;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

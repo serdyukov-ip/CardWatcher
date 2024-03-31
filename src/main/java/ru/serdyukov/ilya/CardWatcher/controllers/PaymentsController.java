@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.serdyukov.ilya.CardWatcher.models.Payment;
-import ru.serdyukov.ilya.CardWatcher.models.User;
 import ru.serdyukov.ilya.CardWatcher.services.PaymentsService;
 
 @Controller

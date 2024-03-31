@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.serdyukov.ilya.CardWatcher.models.User;
 import ru.serdyukov.ilya.CardWatcher.repositories.UsersRepository;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
