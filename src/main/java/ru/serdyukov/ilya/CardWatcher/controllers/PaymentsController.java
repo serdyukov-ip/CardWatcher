@@ -28,9 +28,10 @@ public class PaymentsController {
 
     @GetMapping("/{id}")
     public String showPayment(@PathVariable("id") int id, Model model) {
-        model.addAttribute("payment", paymentsService.findOne(id));
-        return "payments/show";
+        model.addAttribute("payments", paymentsService.findOneByCreditCardId(id));
+        return "payments/list-payments";
     }
+
 
     @GetMapping("/create")
     public String createPayment(@ModelAttribute("payment") Payment payment) {

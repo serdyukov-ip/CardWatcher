@@ -52,8 +52,10 @@
                             </div>
                         </div>
                         <div class="mt-auto">
-                            <p class="card-text" th:text="${'Upcoming payment: ' + card.getLastFourDigit()}">
-                                TotalDebit}</p>
+                            <a th:href="@{/payments/{id}(id=${card.getId()})}">
+                                <p class="card-text" th:text="${'Upcoming payment: ' + card.getLastFourDigit()}">
+                                    TotalDebit}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
