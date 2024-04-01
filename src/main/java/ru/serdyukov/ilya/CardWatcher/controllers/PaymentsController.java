@@ -20,22 +20,24 @@ public class PaymentsController {
         this.paymentsService = paymentsService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String showListOfPayments(Model model) {
         model.addAttribute("payments", paymentsService.findAll());
-        return "payments/list";
+        return "payments/list-payments";
     }
 
     @GetMapping("/{id}")
     public String showPayment(@PathVariable("id") int id, Model model) {
-        model.addAttribute("payment", paymentsService.findOne(id));
-        return "payments/show";
+        model.addAttribute("payments", paymentsService.findOneByCreditCardId(id));
+        return "payments/list-payments";
     }
+
 
     @GetMapping("/create")
     public String createPayment(@ModelAttribute("payment") Payment payment) {
         return "payments/create";
     }
+
 
     @PostMapping()
     public String newPayment(@ModelAttribute("payment") Payment payment, BindingResult bindingResult) {

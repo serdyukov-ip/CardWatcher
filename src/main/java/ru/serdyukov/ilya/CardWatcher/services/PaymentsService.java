@@ -29,6 +29,10 @@ public class PaymentsService {
         return findPayment.orElse(null);
     }
 
+    public List<Payment> findOneByCreditCardId(int id) {
+        return paymentRepository.findOneByCreditCardIdOrderByRecommendPaymentDtDesc(id);
+    }
+
     @Transactional
     public void save(Payment payment) {
         paymentRepository.save(payment);
