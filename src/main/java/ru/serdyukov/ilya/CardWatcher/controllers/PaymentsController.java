@@ -32,6 +32,12 @@ public class PaymentsController {
         return "payments/list-payments";
     }
 
+    @GetMapping("/show/{id}")
+    public String shPayment(@PathVariable("id") int id, Model model) {
+        model.addAttribute("payment", paymentsService.findOne(id));
+        return "payments/show";
+    }
+
 
     @GetMapping("/create")
     public String createPayment(@ModelAttribute("payment") Payment payment) {
