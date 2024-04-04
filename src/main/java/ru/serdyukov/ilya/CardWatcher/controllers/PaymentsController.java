@@ -35,7 +35,7 @@ public class PaymentsController {
     @GetMapping("/show/{id}")
     public String shPayment(@PathVariable("id") int id, Model model) {
         model.addAttribute("payment", paymentsService.findOne(id));
-        return "payments/show";
+        return "payments/update-payments";
     }
 
 
@@ -66,17 +66,18 @@ public class PaymentsController {
                              @PathVariable("id") int id) {
 
         if (bindingResult.hasErrors()) {
-            return "payments/update";
+            return "payments/" + id;
         }
 
         paymentsService.update(id, payment);
-        return "redirect:/payments/list";
+        return "redirect:/payments/" + id;
     }
 
     @DeleteMapping("/{id}")
     public String deletePayment(@PathVariable("id") int id) {
+        Payment payment = paymentsService.findOne(id);
         paymentsService.delete(id);
-        return "redirect:/payments/list";
+        return "redirect:/payments/" + payment.getCreditCardId();
     }
 
 }
