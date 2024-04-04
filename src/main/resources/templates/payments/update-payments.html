@@ -44,6 +44,7 @@
                         <div style="color:red" th:errors="*{dtFirstPayment}">First payment date</div>
                     </div>
                 </div>
+                <td hidden="hidden" th:value="${payment.getId()}"></td>
                 <div class="form-group mb-3 mt-3">
                     <label for="bankDtPayment">Enter Payment date from bank</label>
                     <div class="form-field">
@@ -80,13 +81,29 @@
                     </div>
                 </div>
                 <div class="form-group mb-3 mt-3">
-                    <label for="paymentStatusId">Select Status</label>
+                    <label for="paymentStatusName">Select Status</label>
                     <div class="form-field">
-                        <select class="form-control" id="paymentStatusId">
+                        <select class="form-control" id="paymentStatusName">
                             <option>Success</option>
                             <option>Pending</option>
                             <option>Overdue</option>
                         </select>
+                    </div>
+                </div>
+                <div hidden="hidden" class="form-group mb-3 mt-3">
+                    <label for="paymentStatusId">Enter Payment date from bank</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{paymentStatusId}" class="form-control"
+                               th:value="${payment.getPaymentStatusId()}" id="paymentStatusId" placeholder="Enter Payment Status Id">
+                        <div style="color:red" th:errors="*{paymentStatusId}">Payment date from bank</div>
+                    </div>
+                </div>
+                <div hidden="hidden" class="form-group mb-3 mt-3">
+                    <label for="creditCardId">Enter Payment date from bank</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{creditCardId}" class="form-control"
+                               th:value="${payment.getId()}" id="creditCardId" placeholder="Enter Credit Card Id">
+                        <div style="color:red" th:errors="*{creditCardId}">Payment date from bank</div>
                     </div>
                 </div>
                 <div class="form-group mb-3 mt-3">
