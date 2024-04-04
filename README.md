@@ -8,7 +8,7 @@
 
 ## О проекте
 
-![preview](https://github.com/serdyukov-ip/CardWatcher/assets/53144887/40f4ed7e-f140-451d-8388-293011ac44c9)
+![gif_for_project](https://github.com/serdyukov-ip/cards-watcher/assets/53144887/c0b98598-1c73-42f6-8696-f14182fc1597)
 
 CardWatcher - это веб-приложение, которое позволяет пользователям легко отслеживать сроки платежей по кредитным картам. Проект находится в активной разработке.
 
