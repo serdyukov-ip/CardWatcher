@@ -21,5 +21,11 @@ jQuery(document).ready(function($) {
     });
 });
 
+$(document).ready(function() {
+    $('#paymentStatusName').change(function() {
+        $('#paymentStatusId').val($(this).val());
+    });
+});
+
 
 

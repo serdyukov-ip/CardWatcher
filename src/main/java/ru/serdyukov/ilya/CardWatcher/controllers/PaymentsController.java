@@ -1,6 +1,7 @@
 package ru.serdyukov.ilya.CardWatcher.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,13 @@ public class PaymentsController {
 
     @GetMapping("/{id}")
     public String showPayment(@PathVariable("id") int id, Model model) {
+
+        Payment payment = new Payment();
+        payment.setCreditCardId(id);
+
+        model.addAttribute("payment", payment);
         model.addAttribute("payments", paymentsService.findOneByCreditCardId(id));
+
         return "payments/list-payments";
     }
 
@@ -39,20 +46,25 @@ public class PaymentsController {
     }
 
 
-    @GetMapping("/create")
-    public String createPayment(@ModelAttribute("payment") Payment payment) {
-        return "payments/create";
+    @GetMapping("/create/{id}")
+    public String createPayment(@PathVariable("id") int cardId, @ModelAttribute("payment") Payment payment, Model model) {
+
+        payment.setCreditCardId(cardId);
+        payment.setPaymentStatusId(2);
+        model.addAttribute("payment", payment);
+
+        return "payments/create-payments";
     }
 
 
-    @PostMapping()
+    @PostMapping("create/")
     public String newPayment(@ModelAttribute("payment") Payment payment, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors())
             return "payments/create";
 
         paymentsService.save(payment);
-        return "redirect:/payments/list";
+        return "redirect:/payments/" + payment.getCreditCardId();
     }
 
     @GetMapping("/{id}/update")
