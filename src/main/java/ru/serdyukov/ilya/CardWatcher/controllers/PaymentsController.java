@@ -69,8 +69,9 @@ public class PaymentsController {
             return "payments/" + id;
         }
 
+        Payment paymentOld = paymentsService.findOne(id);
         paymentsService.update(id, payment);
-        return "redirect:/payments/" + id;
+        return "redirect:/payments/" + paymentOld.getCreditCardId();
     }
 
     @DeleteMapping("/{id}")
