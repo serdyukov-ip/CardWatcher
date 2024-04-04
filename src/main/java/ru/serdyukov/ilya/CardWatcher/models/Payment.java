@@ -43,4 +43,24 @@ public class Payment {
 
     public Payment() {
     }
+
+    // !!! temporary crutch method. Changing join requests in repositories
+    public String getPaymentStatusName() {
+
+        return switch (this.paymentStatusId) {
+            case 1 -> "Success";
+            case 2 -> "Pending";
+            default -> "Overdue";
+        };
+    }
+
+    // !!! temporary crutch method. Changing join requests in repositories
+    public String getPaymentCSSClassName() {
+
+        return switch (this.paymentStatusId) {
+            case 1 -> "table-success";
+            case 2 -> "table-info";
+            default -> "table-danger";
+        };
+    }
 }
