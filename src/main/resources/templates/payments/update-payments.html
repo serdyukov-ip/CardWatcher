@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Card</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<a href="/cards/">
+    <div class="logo-page">
+        <img src="/img/logo.png" alt="">
+    </div>
+</a>
+<a href="/logout">
+    <div class="logout">
+        <img src="/img/logout.png" alt="">
+    </div>
+</a>
+<div class="container">
+    <div class="row sticky-top">
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-primary mt-3 cards-btn mx-auto d-block" data-toggle="modal"
+                    data-target="#modalUpdate">Update Payment</button>
+        </div>
+        <div class="col-lg-4">
+            <h2 class="text-center mb-3 mt-3">Payment Details</h2>
+        </div>
+        <div class="col-lg-4 text-right">
+            <button type="button" class="btn btn-danger mt-3 cards-btn-delete mx-auto d-block" data-toggle="modal"
+                    data-target="#modalDelete">Delete Payment
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 px-5">
+            <form id="updateForm" class="cards-wrapper" th:method="PATCH" th:action="@{/payments/{id}(id=${payment.getId()})}" th:object="${payment}">
+                <div class="form-group mb-3 mt-3">
+                    <label for="dtFirstPayment">Enter First payment date</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{dtFirstPayment}" class="form-control" id="dtFirstPayment" placeholder="Enter First payment date">
+                        <div style="color:red" th:errors="*{dtFirstPayment}">First payment date</div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="bankDtPayment">Enter Payment date from bank</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{bankDtPayment}" class="form-control" id="bankDtPayment" placeholder="Enter Payment date from bank">
+                        <div style="color:red" th:errors="*{bankDtPayment}">Payment date from bank</div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="recommendPaymentDt">Enter Recommend payment date</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{recommendPaymentDt}" class="form-control" id="recommendPaymentDt" placeholder="Enter Recommend payment date">
+                        <div style="color:red" th:errors="*{recommendPaymentDt}">Recommend payment date</div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="calcDtFullRepayment">Enter calculated payment date</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{calcDtFullRepayment}" class="form-control" id="calcDtFullRepayment" placeholder="Enter Payment date calc">
+                        <div style="color:red" th:errors="*{calcDtFullRepayment}">Payment date calc</div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="amount">Enter Amount</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{amount}" class="form-control" id="amount" placeholder="Enter Amount">
+                        <div style="color:red" th:errors="*{amount}">Amount</div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="paymentDt">Enter Payment date</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{paymentDt}" class="form-control" id="paymentDt" placeholder="Enter Payment date">
+                        <div style="color:red" th:errors="*{paymentDt}">Payment date</div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="paymentStatusId">Select Status</label>
+                    <div class="form-field">
+                        <select class="form-control" id="paymentStatusId">
+                            <option>Success</option>
+                            <option>Pending</option>
+                            <option>Overdue</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mb-3 mt-3">
+                    <label for="description">Enter Comment</label>
+                    <div class="form-field">
+                        <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Enter Comment">
+                        <div style="color:red" th:errors="*{description}">Comment</div>
+                    </div>
+                </div>
+            </form>
+            <form id="deleteForm" th:method="DELETE" th:action="@{/payments/{id}(id=${payment.getId()})}"></form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Модальное окно Update -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle1">Confirmation</h5>
+                <button type="button" class="btn-close border-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&#10005;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Update card details?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary cards-btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger cards-btn-delete" id="confirmUpdate" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно Delete -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle2">Confirmation</h5>
+                <button type="button" class="btn-close border-0" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&#10005;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Delete the card?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary cards-btn" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger cards-btn-delete" id="confirmDelete" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

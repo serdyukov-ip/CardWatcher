@@ -21,23 +21,14 @@
 </a>
 <div class="container">
     <div class="row sticky-top">
-        <div class="col-lg-4">
-            <button type="button" class="btn btn-primary mt-3 cards-btn mx-auto d-block" data-toggle="modal"
-                    data-target="#modalUpdate">Update Payment
-            </button>
-        </div>
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             <h2 class="text-center mb-3 mt-3">Payment Details</h2>
-        </div>
-        <div class="col-lg-4 text-right">
-            <button type="button" class="btn btn-danger mt-3 cards-btn-delete mx-auto d-block" data-toggle="modal"
-                    data-target="#modalDelete">Delete Payment
-            </button>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12 px-5">
-            <table class="table">
+
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -52,72 +43,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-success" th:each="payment, iterStat : ${payments}">
+
+                <tr th:each="payment, iterStat : ${payments}" class='clickable-row'
+                    th:attr="data-href=@{/payments/show/{id}(id=${payment.getId()})}">
+
                         <th scope="row" th:text="${iterStat.index + 1}"></th>
-                        <td hidden="hidden" th:value="${payment.getId()}"></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getDtFirstPayment()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getBankDtPayment()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getRecommendPaymentDt()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getCalcDtFullRepayment()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getAmount()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getPaymentDt()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getPaymentStatusId()}"></a></td>
-                        <td><a th:href="@{/payments/show/{id}(id=${payment.getId()})}" th:text="${payment.getDescription()}"></a></td>
+                        <td th:text="${payment.getDtFirstPayment()}"></td>
+                        <td th:text="${payment.getBankDtPayment()}"></td>
+                        <td th:text="${payment.getRecommendPaymentDt()}"></td>
+                        <td th:text="${payment.getCalcDtFullRepayment()}"></td>
+                        <td th:text="${payment.getAmount()}"></td>
+                        <td th:text="${payment.getPaymentDt()}"></td>
+                        <td th:text="${payment.getPaymentStatusName()}"></td>
+                        <td th:text="${payment.getDescription()}"></td>
+
                     </tr>
+
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
 
-
-<!-- Модальное окно Update -->
-<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle1">Confirmation</h5>
-                <button type="button" class="btn-close border-0" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&#10005;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Update payment?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary cards-btn" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger cards-btn-delete" id="confirmUpdate" data-dismiss="modal">
-                    Yes
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Модальное окно Delete -->
-<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle2">Confirmation</h5>
-                <button type="button" class="btn-close border-0" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&#10005;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Delete payment?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary cards-btn" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger cards-btn-delete" id="confirmDelete" data-dismiss="modal">
-                    Yes
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/script.js"></script>

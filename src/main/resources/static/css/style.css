@@ -62,6 +62,13 @@ a:hover, a:focus, a:active, a.text {
     padding: 10px 15px 10px 10px;
 }
 
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+.table td {
+    padding: 1rem;
+}
+
 table input {
     border: none;
     outline: none;
