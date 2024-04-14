@@ -13,6 +13,13 @@ window.onload = function() {
             document.getElementById('deleteForm').submit();
         });
     }
+
+    if ($('.datepicker').length > 0) {
+        $('.datepicker').datepicker({
+            weekStart: 1,
+            color: 'red'
+        });
+    }
 }
 
 jQuery(document).ready(function($) {
@@ -26,11 +33,3 @@ $(document).ready(function() {
         $('#paymentStatusId').val($(this).val());
     });
 });
-
-$('.datepicker').datepicker({
-    weekStart:1,
-    color: 'red'
-});
-
-
-
