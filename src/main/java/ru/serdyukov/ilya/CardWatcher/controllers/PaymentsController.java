@@ -61,16 +61,10 @@ public class PaymentsController {
     public String newPayment(@ModelAttribute("payment") Payment payment, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors())
-            return "payments/create";
+            return "payments/create-payments";
 
         paymentsService.save(payment);
         return "redirect:/payments/" + payment.getCreditCardId();
-    }
-
-    @GetMapping("/{id}/update")
-    public String updatePayment(Model model, @PathVariable("id") int id) {
-        model.addAttribute("payment", paymentsService.findOne(id));
-        return "payments/update";
     }
 
     @PatchMapping("/{id}")
