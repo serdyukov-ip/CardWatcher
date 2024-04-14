@@ -40,7 +40,7 @@
                 <div class="form-group mb-3 mt-3">
                     <label for="dtFirstPayment">Enter First payment date</label>
                     <div class="form-field">
-                        <input type="text" th:field="*{dtFirstPayment}" class="form-control" id="dtFirstPayment" placeholder="Enter First payment date">
+                        <input type="text" th:field="*{dtFirstPayment}" class="datepicker form-control" id="dtFirstPayment" placeholder="Enter First payment date">
                         <div style="color:red" th:errors="*{dtFirstPayment}">First payment date</div>
                     </div>
                 </div>
@@ -48,21 +48,21 @@
                 <div class="form-group mb-3 mt-3">
                     <label for="bankDtPayment">Enter Payment date from bank</label>
                     <div class="form-field">
-                        <input type="text" th:field="*{bankDtPayment}" class="form-control" id="bankDtPayment" placeholder="Enter Payment date from bank">
+                        <input type="text" th:field="*{bankDtPayment}" class="datepicker form-control" id="bankDtPayment" placeholder="Enter Payment date from bank">
                         <div style="color:red" th:errors="*{bankDtPayment}">Payment date from bank</div>
                     </div>
                 </div>
                 <div class="form-group mb-3 mt-3">
                     <label for="recommendPaymentDt">Enter Recommend payment date</label>
                     <div class="form-field">
-                        <input type="text" th:field="*{recommendPaymentDt}" class="form-control" id="recommendPaymentDt" placeholder="Enter Recommend payment date">
+                        <input type="text" th:field="*{recommendPaymentDt}" class="datepicker form-control" id="recommendPaymentDt" placeholder="Enter Recommend payment date">
                         <div style="color:red" th:errors="*{recommendPaymentDt}">Recommend payment date</div>
                     </div>
                 </div>
                 <div class="form-group mb-3 mt-3">
                     <label for="calcDtFullRepayment">Enter calculated payment date</label>
                     <div class="form-field">
-                        <input type="text" th:field="*{calcDtFullRepayment}" class="form-control" id="calcDtFullRepayment" placeholder="Enter Payment date calc">
+                        <input type="text" th:field="*{calcDtFullRepayment}" class="datepicker form-control" id="calcDtFullRepayment" placeholder="Enter Payment date calc">
                         <div style="color:red" th:errors="*{calcDtFullRepayment}">Payment date calc</div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                 <div class="form-group mb-3 mt-3">
                     <label for="paymentDt">Enter Payment date</label>
                     <div class="form-field">
-                        <input type="text" th:field="*{paymentDt}" class="form-control" id="paymentDt" placeholder="Enter Payment date">
+                        <input type="text" th:field="*{paymentDt}" class="datepicker form-control" id="paymentDt" placeholder="Enter Payment date">
                         <div style="color:red" th:errors="*{paymentDt}">Payment date</div>
                     </div>
                 </div>
@@ -163,6 +163,7 @@
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/script.js"></script>
 </body>
 </html>
