@@ -51,7 +51,8 @@
                 </thead>
                 <tbody>
 
-                <tr th:each="payment, iterStat : ${payments}" class='clickable-row'
+                <tr th:each="payment, iterStat : ${payments}"
+                    th:class="${payment.getPaymentCSSClassName()}"
                     th:attr="data-href=@{/payments/show/{id}(id=${payment.getId()})}">
 
                         <th scope="row" th:text="${iterStat.index + 1}"></th>
