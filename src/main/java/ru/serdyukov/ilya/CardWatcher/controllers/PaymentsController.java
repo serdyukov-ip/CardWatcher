@@ -10,6 +10,8 @@ import ru.serdyukov.ilya.CardWatcher.models.Payment;
 import ru.serdyukov.ilya.CardWatcher.models.User;
 import ru.serdyukov.ilya.CardWatcher.services.PaymentsService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/payments")
 public class PaymentsController {
@@ -23,6 +25,7 @@ public class PaymentsController {
 
     @GetMapping("/")
     public String showListOfPayments(Model model) {
+
         model.addAttribute("payments", paymentsService.findAll());
         return "payments/list-payments";
     }
@@ -32,9 +35,12 @@ public class PaymentsController {
 
         Payment payment = new Payment();
         payment.setCreditCardId(id);
-
         model.addAttribute("payment", payment);
-        model.addAttribute("payments", paymentsService.findOneByCreditCardId(id));
+
+        List<Payment> paymentList = paymentsService.findOneByCreditCardId(id);
+        if (paymentList.isEmpty()) model.addAttribute("no_payment", true);
+
+        model.addAttribute("payments", paymentList);
 
         return "payments/list-payments";
     }

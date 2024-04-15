@@ -58,9 +58,9 @@ public class Payment {
     public String getPaymentCSSClassName() {
 
         return switch (this.paymentStatusId) {
-            case 1 -> "table-success";
-            case 2 -> "table-info";
-            default -> "table-danger";
+            case 1 -> "clickable-row table-success";
+            case 2 -> "clickable-row table-info";
+            default -> "clickable-row table-danger";
         };
     }
 }
