@@ -51,11 +51,22 @@
                                 <h5 class="card-title" th:text="${card.getCardName()}">CardName</h5>
                             </div>
                         </div>
-                        <div class="mt-auto">
-                            <a th:href="@{/payments/{id}(id=${card.getId()})}">
-                                <p class="card-text" th:text="${'Upcoming payment: ' + card.getLastFourDigit()}">
-                                    TotalDebit}</p>
-                            </a>
+                        <div class="row">
+                            <div class="mt-auto">
+                                <a th:href="@{/payments/{id}(id=${card.getId()})}">
+                                    <p class="card-text" th:if="${card.getNextPayment()}" th:text="${'Next payment:'}"></p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mt-auto">
+                                <a th:href="@{/payments/{id}(id=${card.getId()})}">
+                                    <p class="card-text" th:if="${card.getNextPayment()}"
+                                       th:text="${card.getNextPayment().getCalcDtFullRepayment() +
+                                        ' sum: ' + card.getNextPayment().getAmount()}"></p>
+                                    <p class="card-text" th:unless="${card.getNextPayment()}">No payments calculated</p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
