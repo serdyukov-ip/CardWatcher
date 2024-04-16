@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
     public List<Payment> findOneByCreditCardIdOrderByRecommendPaymentDtDesc(int id);
+
+    public Payment findFirstByCreditCardIdOrderByRecommendPaymentDtDesc(int id);
 }

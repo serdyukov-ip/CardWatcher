@@ -29,6 +29,10 @@ public class PaymentsService {
         return findPayment.orElse(null);
     }
 
+    public Payment findFirstByCreditCardIdOrderByRecommendPaymentDtDesc(int cardId) {
+        return paymentRepository.findFirstByCreditCardIdOrderByRecommendPaymentDtDesc(cardId);
+    }
+
     public List<Payment> findOneByCreditCardId(int id) {
         return paymentRepository.findOneByCreditCardIdOrderByRecommendPaymentDtDesc(id);
     }

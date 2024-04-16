@@ -3,6 +3,8 @@ package ru.serdyukov.ilya.CardWatcher.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "creditcards")
@@ -42,6 +44,9 @@ public class Card {
 
     @Column(name = "total_debit")
     private double totalDebit;
+
+    @Transient
+    private Payment nextPayment;
 
     public Card() {
     }
