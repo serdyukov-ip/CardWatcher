@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.serdyukov.ilya.CardWatcher.models.Bank;
-import ru.serdyukov.ilya.CardWatcher.models.Card;
-import ru.serdyukov.ilya.CardWatcher.models.Currency;
+import ru.serdyukov.ilya.CardWatcher.models.*;
 import ru.serdyukov.ilya.CardWatcher.security.UserDetailsSecurity;
 import ru.serdyukov.ilya.CardWatcher.services.*;
 
@@ -23,11 +21,13 @@ public class CardsController {
 
     private final CardsService cardsService;
     private final UsersService userService;
+    private final PaymentsService paymentsService;
 
     @Autowired
-    public CardsController(CardsService cardsService,UsersService userService) {
+    public CardsController(CardsService cardsService, UsersService userService, PaymentsService paymentsService) {
         this.cardsService = cardsService;
         this.userService = userService;
+        this.paymentsService = paymentsService;
     }
 
     @GetMapping("/")
@@ -38,6 +38,11 @@ public class CardsController {
         List<Card> cardsList = cardsService.findByIdUser(user.getId());
         if (cardsList.isEmpty())
             model.addAttribute("no_card", true);
+        else {
+            for (Card card : cardsList) {
+                card.setNextPayment(paymentsService.findFirstByCreditCardIdOrderByRecommendPaymentDtDesc(card.getId()));
+            }
+        }
 
         model.addAttribute("cards", cardsList);
         model.addAttribute("user", user);
